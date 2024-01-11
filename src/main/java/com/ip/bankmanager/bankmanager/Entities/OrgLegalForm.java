@@ -1,9 +1,9 @@
-package com.ip.bankmanager.bankmanager.Entyties;
+package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
 
 @Entity
-public class OrgLegalForms {
+public class OrgLegalForm {
     private int org_legal_forms_id;
     private String org_legal_forms_name;
 
@@ -21,9 +21,9 @@ public class OrgLegalForms {
         this.org_legal_forms_name = org_legal_forms_name;
     }
     
-    public OrgLegalForms() {}
+    public OrgLegalForm() {}
 
-    public OrgLegalForms(int org_legal_forms_id, String org_legal_forms_name) {
+    public OrgLegalForm(int org_legal_forms_id, String org_legal_forms_name) {
         this.org_legal_forms_id = org_legal_forms_id;
         this.org_legal_forms_name = org_legal_forms_name;
     }

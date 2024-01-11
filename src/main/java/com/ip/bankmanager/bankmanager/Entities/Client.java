@@ -1,9 +1,9 @@
-package com.ip.bankmanager.bankmanager.DTO;
+package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
 
 @Entity(name="clients")
-public class Clients {
+public class Client {
     public int     client_id;
     public String  client_name;
     public String  client_short_name;
@@ -50,9 +50,9 @@ public class Clients {
         this.org_legal_form_id = org_legal_form_id;
     }
 
-    public Clients() {}
+    public Client() {}
 
-    public Clients(int client_id, String client_name, String client_short_name, String address, int org_legal_form_id) {
+    public Client(int client_id, String client_name, String client_short_name, String address, int org_legal_form_id) {
         this.client_id = client_id;
         this.client_name = client_name;
         this.client_short_name = client_short_name;

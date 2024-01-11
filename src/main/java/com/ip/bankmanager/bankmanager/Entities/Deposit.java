@@ -1,10 +1,10 @@
-package com.ip.bankmanager.bankmanager.Entyties;
+package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
 import java.util.Date;;
 
 @Entity(name="deposits")
-public class Deposits {
+public class Deposit {
     private int   deposit_id;
     private int   client_id;
     private int   bank_id;
@@ -54,9 +54,9 @@ public class Deposits {
         this.period_month = period_month;
     }
 
-    public Deposits() {}
+    public Deposit() {}
 
-    public Deposits(int deposit_id, int client_id, int bank_id, Date opening_date, int percent, int period_month) {
+    public Deposit(int deposit_id, int client_id, int bank_id, Date opening_date, int percent, int period_month) {
         this.deposit_id = deposit_id;
         this.client_id = client_id;
         this.bank_id = bank_id;

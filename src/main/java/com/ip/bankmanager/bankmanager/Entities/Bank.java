@@ -1,9 +1,9 @@
-package com.ip.bankmanager.bankmanager.Entyties;
+package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
 
 @Entity(name="banks")
-public class Banks {
+public class Bank {
     public int     bank_id;
     public String  bank_name;
     public int     bic;
@@ -27,12 +27,12 @@ public class Banks {
         this.bic = bic;
     }
 
-    public Banks(int bank_id, String bank_name, int bic) {
+    public Bank(int bank_id, String bank_name, int bic) {
         this.bank_id = bank_id;
         this.bank_name = bank_name;
         this.bic = bic;
     }
 
-    public Banks() {}
+    public Bank() {}
 
 }
