@@ -1,10 +1,15 @@
 package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;;
 
 @Entity(name="deposits")
 public class Deposit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int   deposit_id;
     private int   client_id;
     private int   bank_id;

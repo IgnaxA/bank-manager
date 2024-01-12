@@ -1,9 +1,14 @@
 package com.ip.bankmanager.bankmanager.Entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity(name="clients")
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int     client_id;
     public String  client_name;
     public String  client_short_name;
