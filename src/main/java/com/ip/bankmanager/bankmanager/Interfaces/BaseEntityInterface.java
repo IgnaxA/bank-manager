@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface BaseEntityInterface<T> {
     List<T> getAll();
+    T getEntity(int id);
     T createEntity(T entity);
     T updateEntity(int id, T newEntity);
-    T deleteeEntity(int id);
+    void deleteEntity(int id);
 }
