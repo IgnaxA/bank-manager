@@ -17,45 +17,52 @@ public class Deposit {
     private int   percent;
     private int   period_month;
 
-    public int getDepositId() {
+    
+    public int getDeposit_id() {
         return deposit_id;
     }
-    public void setDepositId(int deposit_id) {
+
+    public void setDeposit_id(int deposit_id) {
         this.deposit_id = deposit_id;
     }
 
-    public int getClientId() {
+    public int getClient_id() {
         return client_id;
     }
-    public void setClientId(int client_id) {
+
+    public void setClient_id(int client_id) {
         this.client_id = client_id;
     }
 
-    public int getBankId() {
+    public int getBank_id() {
         return bank_id;
     }
-    public void setBankId(int bank_id) {
+
+    public void setBank_id(int bank_id) {
         this.bank_id = bank_id;
     }
 
-    public Date getOpeningDate() {
+    public Date getOpening_date() {
         return opening_date;
     }
-    public void setOpeningDate(Date opening_date) {
+
+    public void setOpening_date(Date opening_date) {
         this.opening_date = opening_date;
     }
 
     public int getPercent() {
         return percent;
     }
+
     public void setPercent(int percent) {
         this.percent = percent;
     }
 
-    public int getPeriodMonth() {
+    public int getPeriod_month() {
         return period_month;
     }
-    public void setPeriodMonth(int period_month) {
+
+    public void setPeriod_month(int period_month) {
         this.period_month = period_month;
     }
 

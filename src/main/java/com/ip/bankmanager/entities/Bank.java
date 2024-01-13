@@ -13,23 +13,36 @@ public class Bank {
     public String  bank_name;
     public int     bic;
     
-    public int getBankId() {
+    
+
+    public int getBank_id() {
         return bank_id;
     }
-    public void setBankId(int bank_id) {
+
+    public void setBank_id(int bank_id) {
         this.bank_id = bank_id;
     }
-    public String getBankName() {
+
+    public String getBank_name() {
         return bank_name;
     }
-    public void setBankName(String bank_name) {
+
+    public void setBank_name(String bank_name) {
         this.bank_name = bank_name;
     }
+
     public int getBic() {
         return bic;
     }
+
     public void setBic(int bic) {
         this.bic = bic;
+    }
+
+    public Bank() {
+        this.bank_id = 0;
+        this.bank_name = "";
+        this.bic = 0;
     }
 
     public Bank(int bank_id, String bank_name, int bic) {
@@ -38,7 +51,6 @@ public class Bank {
         this.bic = bic;
     }
 
-    public Bank() {}
     @Override
     public String toString() {
         return "Bank [bank_id=" + bank_id + ", bank_name=" + bank_name + ", bic=" + bic + "]";

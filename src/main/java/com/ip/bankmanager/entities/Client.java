@@ -15,27 +15,29 @@ public class Client {
     public String  address;
     public int     org_legal_form_id;
 
-    public int getClientId() {
+
+
+    public int getClient_id() {
         return client_id;
     }
 
-    public void setClientId(int client_id) {
+    public void setClient_id(int client_id) {
         this.client_id = client_id;
     }
 
-    public String getClientName() {
+    public String getClient_name() {
         return client_name;
     }
 
-    public void setClientName(String client_name) {
+    public void setClient_name(String client_name) {
         this.client_name = client_name;
     }
 
-    public String getClientShortName() {
+    public String getClient_short_name() {
         return client_short_name;
     }
 
-    public void setClientShortName(String client_short_name) {
+    public void setClient_short_name(String client_short_name) {
         this.client_short_name = client_short_name;
     }
 
@@ -47,11 +49,11 @@ public class Client {
         this.address = address;
     }
 
-    public int getOrgLegalFormId() {
+    public int getOrg_legal_form_id() {
         return org_legal_form_id;
     }
 
-    public void setOrgLegalFormId(int org_legal_form_id) {
+    public void setOrg_legal_form_id(int org_legal_form_id) {
         this.org_legal_form_id = org_legal_form_id;
     }
 
