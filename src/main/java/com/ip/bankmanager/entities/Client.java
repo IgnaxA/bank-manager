@@ -15,8 +15,6 @@ public class Client {
     public String  address;
     public int     org_legal_form_id;
 
-
-
     public int getClient_id() {
         return client_id;
     }

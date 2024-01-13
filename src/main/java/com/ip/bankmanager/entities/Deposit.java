@@ -17,7 +17,6 @@ public class Deposit {
     private int   percent;
     private int   period_month;
 
-    
     public int getDeposit_id() {
         return deposit_id;
     }

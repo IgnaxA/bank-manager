@@ -13,8 +13,6 @@ public class Bank {
     public String  bank_name;
     public int     bic;
     
-    
-
     public int getBank_id() {
         return bank_id;
     }

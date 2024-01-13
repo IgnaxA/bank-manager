@@ -12,7 +12,6 @@ public class OrgLegalForm {
     private int org_legal_forms_id;
     private String org_legal_forms_name;
 
-
     public int getOrg_legal_forms_id() {
         return org_legal_forms_id;
     }
