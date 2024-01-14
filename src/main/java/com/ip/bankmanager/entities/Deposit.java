@@ -1,5 +1,6 @@
 package com.ip.bankmanager.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,73 +10,94 @@ import java.util.Date;;
 @Entity(name="deposits")
 public class Deposit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int   deposit_id;
-    private int   client_id;
-    private int   bank_id;
-    private Date  opening_date;
-    private int   percent;
-    private int   period_month;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "deposit_id")
+    private Integer depositId;
 
-    public int getDeposit_id() {
-        return deposit_id;
+    @Column(name = "client_id")
+    private Integer clientId;
+
+    @Column(name = "bank_id")
+    private Integer bankId;
+
+    @Column(name = "opening_date")
+    private Date openingDate;
+
+    @Column(name = "percent")
+    private Integer percent;
+
+    @Column(name = "period_month")
+    private Integer periodMonth;
+
+    public Integer getDepositId() {
+        return depositId;
     }
 
-    public void setDeposit_id(int deposit_id) {
-        this.deposit_id = deposit_id;
+    public void setDepositId(Integer depositId) {
+        this.depositId = depositId;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
-    public int getBank_id() {
-        return bank_id;
+    public Integer getBankId() {
+        return bankId;
     }
 
-    public void setBank_id(int bank_id) {
-        this.bank_id = bank_id;
+    public void setBankId(Integer bankId) {
+        this.bankId = bankId;
     }
 
-    public Date getOpening_date() {
-        return opening_date;
+    public Date getOpeningDate() {
+        return openingDate;
     }
 
-    public void setOpening_date(Date opening_date) {
-        this.opening_date = opening_date;
+    public void setOpeningDate(Date openingDate) {
+        this.openingDate = openingDate;
     }
 
-    public int getPercent() {
+    public Integer getPercent() {
         return percent;
     }
 
-    public void setPercent(int percent) {
+    public void setPercent(Integer percent) {
         this.percent = percent;
     }
 
-    public int getPeriod_month() {
-        return period_month;
+    public Integer getPeriodMonth() {
+        return periodMonth;
     }
 
-    public void setPeriod_month(int period_month) {
-        this.period_month = period_month;
+    public void setPeriodMonth(Integer periodMonth) {
+        this.periodMonth = periodMonth;
     }
 
-    public Deposit() {}
+    public Deposit() {
+        this.depositId = null;
+        this.clientId = null;
+        this.bankId = null;
+        this.openingDate = null;
+        this.percent = null;
+        this.periodMonth = null;
+    }
 
-    public Deposit(int deposit_id, int client_id, int bank_id, Date opening_date, int percent, int period_month) {
-        this.deposit_id = deposit_id;
-        this.client_id = client_id;
-        this.bank_id = bank_id;
-        this.opening_date = opening_date;
+    public Deposit(Integer depositId, Integer clientId, Integer bankId, Date openingDate, Integer percent, Integer periodMonth) {
+        this.depositId = depositId;
+        this.clientId = clientId;
+        this.bankId = bankId;
+        this.openingDate = openingDate;
         this.percent = percent;
-        this.period_month = period_month;
+        this.periodMonth = periodMonth;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Deposit [depositId=" + depositId + ", clientId=" + clientId + ", bankId=" + bankId + ", openingDate="
+                + openingDate + ", percent=" + percent + ", periodMonth=" + periodMonth + "]";
+    }
 }

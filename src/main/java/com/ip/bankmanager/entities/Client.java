@@ -1,5 +1,6 @@
 package com.ip.bankmanager.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,35 +9,44 @@ import jakarta.persistence.Id;
 @Entity(name="clients")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int     client_id;
-    public String  client_name;
-    public String  client_short_name;
-    public String  address;
-    public int     org_legal_form_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id")
+    public Integer clientId;
 
-    public int getClient_id() {
-        return client_id;
+    @Column(name = "client_name")
+    public String clientName;
+
+    @Column(name = "client_short_name")
+    public String clientShortName;
+
+    @Column(name = "address")
+    public String address;
+
+    @Column(name = "org_legal_form_id")
+    public Integer orgLegalFormId;
+
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
-    public String getClient_name() {
-        return client_name;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClient_name(String client_name) {
-        this.client_name = client_name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public String getClient_short_name() {
-        return client_short_name;
+    public String getClientShortName() {
+        return clientShortName;
     }
 
-    public void setClient_short_name(String client_short_name) {
-        this.client_short_name = client_short_name;
+    public void setClientShortName(String clientShortName) {
+        this.clientShortName = clientShortName;
     }
 
     public String getAddress() {
@@ -47,21 +57,33 @@ public class Client {
         this.address = address;
     }
 
-    public int getOrg_legal_form_id() {
-        return org_legal_form_id;
+    public Integer getOrgLegalFormId() {
+        return orgLegalFormId;
     }
 
-    public void setOrg_legal_form_id(int org_legal_form_id) {
-        this.org_legal_form_id = org_legal_form_id;
+    public void setOrgLegalFormId(Integer orgLegalFormId) {
+        this.orgLegalFormId = orgLegalFormId;
     }
 
-    public Client() {}
+    public Client() {
+        this.clientId = null;
+        this.clientName = null;
+        this.clientShortName = null;
+        this.address = null;
+        this.orgLegalFormId = null;
+    }
 
-    public Client(int client_id, String client_name, String client_short_name, String address, int org_legal_form_id) {
-        this.client_id = client_id;
-        this.client_name = client_name;
-        this.client_short_name = client_short_name;
+    public Client(Integer clientId, String clientName, String clientShortName, String address, Integer orgLegalFormId) {
+        this.clientId = clientId;
+        this.clientName = clientName;
+        this.clientShortName = clientShortName;
         this.address = address;
-        this.org_legal_form_id = org_legal_form_id;
+        this.orgLegalFormId = orgLegalFormId;
+    }
+
+    @Override
+    public String toString() {
+        return "Client [clientId=" + clientId + ", clientName=" + clientName + ", clientShortName=" + clientShortName
+                + ", address=" + address + ", orgLegalFormId=" + orgLegalFormId + "]";
     }
 }

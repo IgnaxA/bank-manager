@@ -1,5 +1,6 @@
 package com.ip.bankmanager.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,50 +9,54 @@ import jakarta.persistence.Id;
 @Entity(name="banks")
 public class Bank {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int     bank_id;
-    public String  bank_name;
-    public int     bic;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bank_id")
+    public Integer bankId;
+
+    @Column(name = "bank_name")
+    public String bankName;
+
+    @Column(name = "bic")
+    public Integer bic;
     
-    public int getBank_id() {
-        return bank_id;
+    public Integer getBankId() {
+        return bankId;
     }
 
-    public void setBank_id(int bank_id) {
-        this.bank_id = bank_id;
+    public void setBankId(Integer bankId) {
+        this.bankId = bankId;
     }
 
-    public String getBank_name() {
-        return bank_name;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setBank_name(String bank_name) {
-        this.bank_name = bank_name;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
-    public int getBic() {
+    public Integer getBic() {
         return bic;
     }
 
-    public void setBic(int bic) {
+    public void setBic(Integer bic) {
         this.bic = bic;
     }
 
     public Bank() {
-        this.bank_id = 0;
-        this.bank_name = "";
-        this.bic = 0;
+        this.bankId = null;
+        this.bankName = null;
+        this.bic = null;
     }
 
     public Bank(int bank_id, String bank_name, int bic) {
-        this.bank_id = bank_id;
-        this.bank_name = bank_name;
+        this.bankId = bank_id;
+        this.bankName = bank_name;
         this.bic = bic;
     }
 
     @Override
     public String toString() {
-        return "Bank [bank_id=" + bank_id + ", bank_name=" + bank_name + ", bic=" + bic + "]";
+        return "Bank [bank_id=" + bankId + ", bank_name=" + bankName + ", bic=" + bic + "]";
     }
-
 }
