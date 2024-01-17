@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ip.bankmanager.entities.Deposit;
 import com.ip.bankmanager.interfaces.DepositInterface;
+import com.ip.bankmanager.validators.ResponseHandler;
 
 @RestController
 @RequestMapping(value = "/deposits")
@@ -29,31 +32,53 @@ public class DepositController {
 
     @ResponseBody
     @PutMapping(path="/", produces = "application/json")
-    public Deposit createDeposit(@RequestBody Deposit deposit) {
-        return depositInterface.createEntity(deposit);
+    public ResponseEntity<?> createDeposit(@RequestBody Deposit deposit) {
+        try {
+            return new ResponseEntity<Deposit>(depositInterface.createEntity(deposit), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseHandler.badResponse(e.getMessage());
+        }
     }
 
     @ResponseBody
     @GetMapping(path="/", produces = "application/json")
-    public List<Deposit> getDeposits() {
-        return depositInterface.getAll();
+    public ResponseEntity<?> getDeposits() {
+        try {
+            return new ResponseEntity<List<Deposit>>(depositInterface.getAll(), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseHandler.badResponse(e.getMessage());
+        }
     }
 
     @ResponseBody
     @GetMapping(path="/{depositId}", produces = "application/json")
-    public Deposit getDeposit(@PathVariable int depositId) {
-        return depositInterface.getEntity(depositId);
+    public ResponseEntity<?> getDeposit(@PathVariable int depositId) {
+        try {
+            return new ResponseEntity<Deposit>(depositInterface.getEntity(depositId), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseHandler.badResponse(e.getMessage());
+        }
     }
 
     @ResponseBody
     @PatchMapping(path="/{depositId}", produces = "application/json")
-    public Deposit updateBank(@PathVariable int depositId, @RequestBody Deposit deposit) throws IllegalAccessException, InvocationTargetException {
-        return depositInterface.updateEntity(depositId, deposit);
+    public ResponseEntity<?> updateBank(@PathVariable int depositId, @RequestBody Deposit deposit) throws IllegalAccessException, InvocationTargetException {
+        try {
+            return new ResponseEntity<Deposit>(depositInterface.updateEntity(depositId, deposit), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseHandler.badResponse(e.getMessage());
+        }
     }
 
     @ResponseBody
     @DeleteMapping(path="/{depositId}", produces = "application/json")
-    public void deleteBank(@PathVariable int depositId) {
-        depositInterface.deleteEntity(depositId);
+    public ResponseEntity<?> deleteBank(@PathVariable int depositId) {
+        try {
+            depositInterface.deleteEntity(depositId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseHandler.badResponse(e.getMessage());
+        }
+        
     }
 }
