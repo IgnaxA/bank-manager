@@ -20,8 +20,16 @@ import com.ip.bankmanager.entities.Bank;
 import com.ip.bankmanager.interfaces.BankInterface;
 import com.ip.bankmanager.validators.ResponseHandler;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping(value = "/banks")
+@Tag(name = "Bank", description = "Banks that can give deposits to clients")
 public class BankController {
     private final BankInterface bankInterface;
 
@@ -32,6 +40,15 @@ public class BankController {
 
     @ResponseBody
     @PutMapping(path="/", produces = "application/json")
+    @Operation(
+        summary = "Create a bank via entering all fields",
+        description = "INPUT: Bank objects with all fields. RESPONSE: created object with code 200 or error with code 500",
+        tags = {"banks", "put"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Bank.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> createBank(@RequestBody Bank bank) {
         try {
             return new ResponseEntity<Bank>(bankInterface.createEntity(bank), HttpStatus.OK);
@@ -42,6 +59,15 @@ public class BankController {
 
     @ResponseBody
     @GetMapping(path="/", produces = "application/json")
+    @Operation(
+        summary = "Returns all banks",
+        description = "RESPONSE: Banks with code 200 or error with code 500",
+        tags = {"banks", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Bank.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> getBanks() {
         try {
             return new ResponseEntity<List<Bank>>(bankInterface.getAll(), HttpStatus.OK);
@@ -52,6 +78,15 @@ public class BankController {
 
     @ResponseBody
     @GetMapping(path="/{bankId}", produces = "application/json")
+    @Operation(
+        summary = "Returns bank via ID",
+        description = "RESPONSE: Bank with code 200 or error with code 500",
+        tags = {"banks", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Bank.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> getBank(@PathVariable int bankId) {
         try {
             return new ResponseEntity<Bank>(bankInterface.getEntity(bankId), HttpStatus.OK);
@@ -62,6 +97,15 @@ public class BankController {
 
     @ResponseBody
     @PatchMapping(path="/{bankId}", produces = "application/json")
+    @Operation(
+        summary = "Updates bank via ID",
+        description = "INPUT: New bank or fields with new values. RESPONSE: Updated or created (if bank with that id not found) bank with code 200 or error with code 500",
+        tags = {"banks", "patch"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Bank.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> updateBank(@PathVariable int bankId, @RequestBody Bank bank) throws IllegalAccessException, InvocationTargetException {
         try {
             return new ResponseEntity<Bank>(bankInterface.updateEntity(bankId, bank), HttpStatus.OK);
@@ -72,6 +116,15 @@ public class BankController {
 
     @ResponseBody
     @DeleteMapping(path="/{bankId}", produces = "application/json")
+    @Operation(
+        summary = "Deletes bank via ID",
+        description = "RESPONSE: Code 200 or error with code 500",
+        tags = {"banks", "delete"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> deleteBank(@PathVariable int bankId) {
         try {
             bankInterface.deleteEntity(bankId);

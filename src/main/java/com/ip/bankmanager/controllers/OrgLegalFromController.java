@@ -20,8 +20,16 @@ import com.ip.bankmanager.entities.OrgLegalForm;
 import com.ip.bankmanager.interfaces.OrgLegalFormInterface;
 import com.ip.bankmanager.validators.ResponseHandler;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping(value = "/olf")
+@Tag(name = "Organisations Legal Forms", description = "Reference table with info about organisations legal forms")
 public class OrgLegalFromController {
     private final OrgLegalFormInterface orgLegalFormInterface;
 
@@ -32,7 +40,16 @@ public class OrgLegalFromController {
 
     @ResponseBody
     @PutMapping(path="/", produces = "application/json")
-    public ResponseEntity<?> createDeposit(@RequestBody OrgLegalForm orgLegalForm) {
+    @Operation(
+        summary = "Create a Organisation legal form via entering all fields",
+        description = "INPUT: Organisation legal form objects with all fields. RESPONSE: created object with code 200 or error with code 500",
+        tags = {"organisations legal forms", "put"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = OrgLegalForm.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> createOrgLegalForm(@RequestBody OrgLegalForm orgLegalForm) {
         try {
            return new ResponseEntity<OrgLegalForm>(orgLegalFormInterface.createEntity(orgLegalForm), HttpStatus.OK); 
         } catch (Exception e) {
@@ -42,7 +59,16 @@ public class OrgLegalFromController {
 
     @ResponseBody
     @GetMapping(path="/", produces = "application/json")
-    public ResponseEntity<?> getDeposits() {
+    @Operation(
+        summary = "Returns all Organisation legal form",
+        description = "RESPONSE: Organisation legal forms with code 200 or error with code 500",
+        tags = {"organisations legal forms", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = OrgLegalForm.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> getOrgLegalForms() {
         try {
             return new ResponseEntity<List<OrgLegalForm>>(orgLegalFormInterface.getAll(), HttpStatus.OK); 
         } catch (Exception e) {
@@ -52,7 +78,16 @@ public class OrgLegalFromController {
 
     @ResponseBody
     @GetMapping(path="/{OrgLegalFormId}", produces = "application/json")
-    public ResponseEntity<?> getDeposit(@PathVariable int OrgLegalFormId) {
+    @Operation(
+        summary = "Returns Organisation legal form via ID",
+        description = "RESPONSE: Organisation legal forms with code 200 or error with code 500",
+        tags = {"organisations legal forms", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = OrgLegalForm.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> getOrgLegalForm(@PathVariable int OrgLegalFormId) {
         try {
             return new ResponseEntity<OrgLegalForm>(orgLegalFormInterface.getEntity(OrgLegalFormId), HttpStatus.OK); 
         } catch (Exception e) {
@@ -62,7 +97,16 @@ public class OrgLegalFromController {
 
     @ResponseBody
     @PatchMapping(path="/{OrgLegalFormId}", produces = "application/json")
-    public ResponseEntity<?> updateBank(@PathVariable int OrgLegalFormId, @RequestBody OrgLegalForm orgLegalForm) throws IllegalAccessException, InvocationTargetException {
+    @Operation(
+        summary = "Updates Organisation legal form via ID",
+        description = "INPUT: New olf or fields with new values. RESPONSE: Updated or created (if olf with that id not found) Organisation legal form with code 200 or error with code 500",
+        tags = {"organisations legal forms", "patch"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = OrgLegalForm.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> updateOrgLegalForm(@PathVariable int OrgLegalFormId, @RequestBody OrgLegalForm orgLegalForm) throws IllegalAccessException, InvocationTargetException {
         try {
             return new ResponseEntity<OrgLegalForm>(orgLegalFormInterface.updateEntity(OrgLegalFormId, orgLegalForm), HttpStatus.OK); 
         } catch (Exception e) {
@@ -72,7 +116,16 @@ public class OrgLegalFromController {
 
     @ResponseBody
     @DeleteMapping(path="/{OrgLegalFormId}", produces = "application/json")
-    public ResponseEntity<?> deleteBank(@PathVariable int OrgLegalFormId) {
+    @Operation(
+        summary = "Deletes Organisation legal form via ID",
+        description = "RESPONSE: Code 200 or error with code 500",
+        tags = {"organisations legal forms", "delete"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> deleteOrgLegalForm(@PathVariable int OrgLegalFormId) {
         try {
             orgLegalFormInterface.deleteEntity(OrgLegalFormId);
             return new ResponseEntity<>(HttpStatus.OK);

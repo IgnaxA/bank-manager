@@ -20,8 +20,16 @@ import com.ip.bankmanager.entities.Deposit;
 import com.ip.bankmanager.interfaces.DepositInterface;
 import com.ip.bankmanager.validators.ResponseHandler;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping(value = "/deposits")
+@Tag(name = "Deposit", description = "Information about deposits")
 public class DepositController {
     private final DepositInterface depositInterface;
 
@@ -32,6 +40,15 @@ public class DepositController {
 
     @ResponseBody
     @PutMapping(path="/", produces = "application/json")
+    @Operation(
+        summary = "Create a deposit via entering all fields",
+        description = "INPUT: Deposit objects with all fields. RESPONSE: created object with code 200 or error with code 500",
+        tags = {"deposits", "put"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Deposit.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> createDeposit(@RequestBody Deposit deposit) {
         try {
             return new ResponseEntity<Deposit>(depositInterface.createEntity(deposit), HttpStatus.OK);
@@ -42,6 +59,15 @@ public class DepositController {
 
     @ResponseBody
     @GetMapping(path="/", produces = "application/json")
+    @Operation(
+        summary = "Returns all deposits",
+        description = "RESPONSE: Deposits with code 200 or error with code 500",
+        tags = {"deposits", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Deposit.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> getDeposits() {
         try {
             return new ResponseEntity<List<Deposit>>(depositInterface.getAll(), HttpStatus.OK);
@@ -52,6 +78,15 @@ public class DepositController {
 
     @ResponseBody
     @GetMapping(path="/{depositId}", produces = "application/json")
+    @Operation(
+        summary = "Returns deposit via ID",
+        description = "RESPONSE: Deposit with code 200 or error with code 500",
+        tags = {"deposits", "get"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Deposit.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
     public ResponseEntity<?> getDeposit(@PathVariable int depositId) {
         try {
             return new ResponseEntity<Deposit>(depositInterface.getEntity(depositId), HttpStatus.OK);
@@ -62,7 +97,16 @@ public class DepositController {
 
     @ResponseBody
     @PatchMapping(path="/{depositId}", produces = "application/json")
-    public ResponseEntity<?> updateBank(@PathVariable int depositId, @RequestBody Deposit deposit) throws IllegalAccessException, InvocationTargetException {
+    @Operation(
+        summary = "Updates deposit via ID",
+        description = "INPUT: New deposit or fields with new values. RESPONSE: Updated or created (if deposit with that id not found) deposit with code 200 or error with code 500",
+        tags = {"deposits", "patch"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Deposit.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> updateDeposit(@PathVariable int depositId, @RequestBody Deposit deposit) throws IllegalAccessException, InvocationTargetException {
         try {
             return new ResponseEntity<Deposit>(depositInterface.updateEntity(depositId, deposit), HttpStatus.OK);
         } catch (Exception e) {
@@ -72,7 +116,16 @@ public class DepositController {
 
     @ResponseBody
     @DeleteMapping(path="/{depositId}", produces = "application/json")
-    public ResponseEntity<?> deleteBank(@PathVariable int depositId) {
+    @Operation(
+        summary = "Deletes deposit via ID",
+        description = "RESPONSE: Code 200 or error with code 500",
+        tags = {"deposits", "delete"}
+    )
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})
+    })
+    public ResponseEntity<?> deleteDeposit(@PathVariable int depositId) {
         try {
             depositInterface.deleteEntity(depositId);
             return new ResponseEntity<>(HttpStatus.OK);
