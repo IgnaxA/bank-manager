@@ -1,4 +1,4 @@
-package com.ip.bankmanager.bankmanager;
+package com.ip.bankmanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
