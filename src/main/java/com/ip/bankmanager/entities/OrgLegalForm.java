@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name="org_legal_form")
+@Entity(name="org_legal_forms")
 public class OrgLegalForm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
