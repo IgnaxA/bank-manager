@@ -11,19 +11,19 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
-    public Integer clientId;
+    private Integer clientId;
 
     @Column(name = "client_name")
-    public String clientName;
+    private String clientName;
 
     @Column(name = "client_short_name")
-    public String clientShortName;
+    private String clientShortName;
 
     @Column(name = "address")
-    public String address;
+    private String address;
 
     @Column(name = "org_legal_forms_id")
-    public Integer orgLegalFormId;
+    private Integer orgLegalFormId;
 
     public Integer getClientId() {
         return clientId;

@@ -11,13 +11,13 @@ public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bank_id")
-    public Integer bankId;
+    private Integer bankId;
 
     @Column(name = "bank_name")
-    public String bankName;
+    private String bankName;
 
     @Column(name = "bic")
-    public Integer bic;
+    private Integer bic;
     
     public Integer getBankId() {
         return bankId;
