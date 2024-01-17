@@ -22,7 +22,7 @@ public class Client {
     @Column(name = "address")
     public String address;
 
-    @Column(name = "org_legal_form_id")
+    @Column(name = "org_legal_forms_id")
     public Integer orgLegalFormId;
 
     public Integer getClientId() {
