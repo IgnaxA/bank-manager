@@ -20,10 +20,11 @@ REST API для запросов к БД
 	su postgres
 
 	psql
-    
+
 	\i dbInit.sql
 
 	\i dbFill.sql
+6. Запустить API
 
 После запуска проекта можно будет посмотреть swagger: 
 http://localhost:8080/swagger-ui/index.html
